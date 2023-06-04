@@ -45,17 +45,15 @@ class MainFragment : Fragment() {
             when(resultado){
                 is Resultado.Exito ->{
                     val lista = resultado.data
-                    val adapter = CateAdapter(lista)
-                    binding.rvCategoria.adapter = adapter
                     binding.rvCategoria.layoutManager = LinearLayoutManager(requireContext())
-
                     val metric = resources.displayMetrics
-
                     val margin = (8f * metric.density).toInt()
-
                     val layoutParams = binding.rvCategoria.layoutParams as ViewGroup.MarginLayoutParams
                     layoutParams.setMargins(margin, margin, margin, margin)
                     binding.rvCategoria.layoutParams = layoutParams
+                    binding.rvCategoria.adapter = CateAdapter(lista){categoria ->
+                        println("CLICK ${categoria.id_cat} nombre: ${categoria.nom_cat}")
+                    }
                 }
                 is Resultado.Problema ->{
                     MaterialAlertDialogBuilder(requireContext())
