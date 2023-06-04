@@ -9,5 +9,14 @@
         android:id="@+id/mainFragment"
         android:name="com.example.dami.ui.view.fragment.MainFragment"
         android:label="@string/title_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_productosXCateFragment"
+            app:destination="@id/productosXCateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productosXCateFragment"
+        android:name="com.example.dami.ProductosXCateFragment"
+        android:label="fragment_productos_x_cate"
+        tools:layout="@layout/fragment_productos_x_cate" />
 </navigation>
