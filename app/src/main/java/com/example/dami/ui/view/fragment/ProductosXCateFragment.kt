@@ -9,19 +9,20 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dami.R
-import com.example.dami.databinding.FragmentMainBinding
+import com.example.dami.databinding.FragmentProductosXCateBinding
 import com.example.dami.entity.Resultado
 import com.example.dami.ui.view.adapter.CateAdapter
-import com.example.dami.ui.viewmodel.CategoriaViewModel
+import com.example.dami.ui.view.adapter.ProductoAdapter
+import com.example.dami.ui.viewmodel.ProductoViewModel
 import com.example.dami.ui.viewmodel.ViewModelFactory
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class MainFragment : Fragment() {
+class ProductosXCateFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
+    private var _binding : FragmentProductosXCateBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: CategoriaViewModel by activityViewModels {
+    private val viewModel: ProductoViewModel by activityViewModels {
         ViewModelFactory()
     }
 
@@ -30,37 +31,26 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentProductosXCateBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        viewModel.listarCategorias()
-        viewModel.listaCategoria.observe(viewLifecycleOwner){ resultado ->
+        val idCategoria = arguments?.getInt("idCategoria") ?: 0
+        viewModel.listarProductos(idCategoria)
+        viewModel.listaProducto.observe(viewLifecycleOwner){resultado ->
             when(resultado){
                 is Resultado.Exito ->{
                     val lista = resultado.data
-                    binding.rvCategoria.layoutManager = LinearLayoutManager(requireContext())
+                    binding.rvProductos.layoutManager = LinearLayoutManager(requireContext())
                     val metric = resources.displayMetrics
                     val margin = (8f * metric.density).toInt()
-                    val layoutParams = binding.rvCategoria.layoutParams as ViewGroup.MarginLayoutParams
+                    val layoutParams = binding.rvProductos.layoutParams as ViewGroup.MarginLayoutParams
                     layoutParams.setMargins(margin, margin, margin, margin)
-                    binding.rvCategoria.layoutParams = layoutParams
-                    binding.rvCategoria.adapter = CateAdapter(lista){categoria ->
-                        println("CLICK ${categoria.id_cat} nombre: ${categoria.nom_cat}")
-                        MaterialAlertDialogBuilder(requireContext())
-                            .setTitle(resources.getString(R.string.confirmacion))
-                            .setMessage(resources.getString(R.string.mensaje_siguiente,categoria.nom_cat))
-                            .setPositiveButton(resources.getString(R.string.aceptar)){_,_ ->
-                                val accion= MainFragmentDirections.actionMainFragmentToProductosXCateFragment(categoria.id_cat)
-                                findNavController().navigate(accion)
-                            }
-                            .setNegativeButton(resources.getString(R.string.cancelar),null)
-                            .show()
-                    }
+                    binding.rvProductos.layoutParams = layoutParams
+                    binding.rvProductos.adapter = ProductoAdapter(lista)
                 }
                 is Resultado.Problema ->{
                     MaterialAlertDialogBuilder(requireContext())
@@ -71,8 +61,8 @@ class MainFragment : Fragment() {
                 }
             }
         }
-
     }
+
 
     override fun onDestroy() {
         _binding = null

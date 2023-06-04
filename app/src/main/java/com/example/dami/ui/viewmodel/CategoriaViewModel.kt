@@ -11,13 +11,13 @@ import kotlinx.coroutines.launch
 
 class CategoriaViewModel(private val repository: CategoriaRepository): ViewModel() {
 
-    private var _listaPCategoria = MutableLiveData<Resultado<List<Categoria>>>()
-    val listaCategoria: LiveData<Resultado<List<Categoria>>> = _listaPCategoria
+    private var _listaCategoria = MutableLiveData<Resultado<List<Categoria>>>()
+    val listaCategoria: LiveData<Resultado<List<Categoria>>> = _listaCategoria
 
     fun listarCategorias(){
         viewModelScope.launch {
             val response = repository.listaCategoria()
-            _listaPCategoria.value = response
+            _listaCategoria.value = response
         }
     }
 }

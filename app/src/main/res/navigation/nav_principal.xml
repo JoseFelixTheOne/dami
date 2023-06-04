@@ -16,7 +16,11 @@
     </fragment>
     <fragment
         android:id="@+id/productosXCateFragment"
-        android:name="com.example.dami.ProductosXCateFragment"
-        android:label="fragment_productos_x_cate"
-        tools:layout="@layout/fragment_productos_x_cate" />
+        android:name="com.example.dami.ui.view.fragment.ProductosXCateFragment"
+        android:label="@string/title_secondary"
+        tools:layout="@layout/fragment_productos_x_cate" >
+        <argument
+            android:name="idCategoria"
+            app:argType="integer" />
+    </fragment>
 </navigation>
