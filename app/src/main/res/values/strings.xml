@@ -7,4 +7,6 @@
     <string name="mensaje_siguiente">Por favor, confirmar que quiere ver los productos de la categoria %s </string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
