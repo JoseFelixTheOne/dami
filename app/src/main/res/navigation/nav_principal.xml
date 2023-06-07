@@ -22,5 +22,17 @@
         <argument
             android:name="idCategoria"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_productosXCateFragment_to_detProductoFragment"
+            app:destination="@id/detProductoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detProductoFragment"
+        android:name="com.example.dami.ui.view.fragment.DetProductoFragment"
+        android:label="fragment_det_producto"
+        tools:layout="@layout/fragment_det_producto" >
+        <argument
+            android:name="producto"
+            app:argType="com.example.dami.entity.Producto" />
     </fragment>
 </navigation>

@@ -50,7 +50,10 @@ class ProductosXCateFragment : Fragment() {
                     val layoutParams = binding.rvProductos.layoutParams as ViewGroup.MarginLayoutParams
                     layoutParams.setMargins(margin, margin, margin, margin)
                     binding.rvProductos.layoutParams = layoutParams
-                    binding.rvProductos.adapter = ProductoAdapter(lista)
+                    binding.rvProductos.adapter = ProductoAdapter(lista){producto ->
+                        println("Producto Seleccionado ${producto.nom_prod}")
+
+                    }
                 }
                 is Resultado.Problema ->{
                     MaterialAlertDialogBuilder(requireContext())
