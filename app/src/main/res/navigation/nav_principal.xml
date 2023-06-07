@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/detProductoFragment"
         android:name="com.example.dami.ui.view.fragment.DetProductoFragment"
-        android:label="fragment_det_producto"
+        android:label="@string/title_third"
         tools:layout="@layout/fragment_det_producto" >
         <argument
             android:name="producto"

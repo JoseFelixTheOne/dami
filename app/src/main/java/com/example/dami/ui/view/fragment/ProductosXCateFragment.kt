@@ -52,7 +52,15 @@ class ProductosXCateFragment : Fragment() {
                     binding.rvProductos.layoutParams = layoutParams
                     binding.rvProductos.adapter = ProductoAdapter(lista){producto ->
                         println("Producto Seleccionado ${producto.nom_prod}")
-
+                        MaterialAlertDialogBuilder(requireContext())
+                            .setTitle(resources.getString(R.string.confirmacion))
+                            .setMessage(resources.getString(R.string.mensaje_ver_prod,producto.nom_prod))
+                            .setPositiveButton(resources.getString(R.string.aceptar)){_,_ ->
+                                val accion= ProductosXCateFragmentDirections.actionProductosXCateFragmentToDetProductoFragment(producto)
+                                findNavController().navigate(accion)
+                            }
+                            .setNegativeButton(resources.getString(R.string.cancelar),null)
+                            .show()
                     }
                 }
                 is Resultado.Problema ->{
