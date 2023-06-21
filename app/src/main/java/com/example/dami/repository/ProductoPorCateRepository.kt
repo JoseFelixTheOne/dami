@@ -17,4 +17,13 @@ class ProductoPorCateRepository(private val dataSource: ProductoPorCateDataSourc
             }
         }
     }
+    suspend fun agregarProducto(producto: Producto): Resultado<Int> {
+        val response = dataSource.agregarProducto(producto)
+        return when (response) {
+            is Resultado.Exito -> Resultado.Exito(1)
+            is Resultado.Problema -> response
+        }
+    }
+
+
 }

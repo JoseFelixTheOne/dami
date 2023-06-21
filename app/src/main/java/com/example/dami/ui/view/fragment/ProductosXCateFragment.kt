@@ -39,6 +39,12 @@ class ProductosXCateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val idCategoria = arguments?.getInt("idCategoria") ?: 0
+
+        binding.btnNuevo.setOnClickListener {
+            val action = ProductosXCateFragmentDirections.actionProductosXCateFragmentToDetProductoFragment(null, idCategoria)
+            findNavController().navigate(action)
+        }
+
         viewModel.listarProductos(idCategoria)
         viewModel.listaProducto.observe(viewLifecycleOwner){resultado ->
             when(resultado){
@@ -56,7 +62,7 @@ class ProductosXCateFragment : Fragment() {
                             .setTitle(resources.getString(R.string.confirmacion))
                             .setMessage(resources.getString(R.string.mensaje_ver_prod,producto.nom_prod))
                             .setPositiveButton(resources.getString(R.string.aceptar)){_,_ ->
-                                val accion= ProductosXCateFragmentDirections.actionProductosXCateFragmentToDetProductoFragment(producto)
+                                val accion= ProductosXCateFragmentDirections.actionProductosXCateFragmentToDetProductoFragment(producto, idCategoria)
                                 findNavController().navigate(accion)
                             }
                             .setNegativeButton(resources.getString(R.string.cancelar),null)

@@ -33,6 +33,10 @@
         tools:layout="@layout/fragment_det_producto" >
         <argument
             android:name="producto"
-            app:argType="com.example.dami.entity.Producto" />
+            app:argType="com.example.dami.entity.Producto"
+            app:nullable="true" />
+        <argument
+            android:name="idCategoria"
+            app:argType="integer" />
     </fragment>
 </navigation>

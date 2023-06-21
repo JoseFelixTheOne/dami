@@ -17,4 +17,20 @@ class ProductoPorCateDataSource {
             Resultado.Problema(Error("002","Error $ex"))
         }
     }
+    suspend fun agregarProducto(producto: Producto): Resultado<Int> {
+        return try {
+            val response = ConexionApi.retrofitService.agregarProducto(producto)
+            if (response > 0) {
+                Resultado.Exito(response)
+            } else {
+                Resultado.Problema(Error("003", "Error en la solicitud"))
+            }
+        } catch (ex: Exception) {
+            Resultado.Problema(Error("001", "Error $ex"))
+        } catch (ex: SocketTimeoutException) {
+            Resultado.Problema(Error("002", "Error $ex"))
+        }
+    }
+
+
 }
