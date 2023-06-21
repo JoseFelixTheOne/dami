@@ -39,13 +39,22 @@ class DetProductoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val args: DetProductoFragmentArgs by navArgs()
-        val productoR: Producto? = args.producto
+        var _productoR: Producto? = args.producto
+        val productoR: Producto = _productoR!!
         val idCategoria: Int = args.idCategoria
         println(productoR)
         if (productoR == null){
-
+            binding.btnAgregar.visibility = View.VISIBLE
+            binding.btnActualizar.visibility = View.GONE
+            binding.btnEliminar.visibility = View.GONE
 
         }else{
+            binding.btnAgregar.visibility = View.GONE
+            binding.btnActualizar.visibility = View.VISIBLE
+            binding.btnEliminar.visibility = View.VISIBLE
+            binding.txtNombre.editText?.setText(productoR.nom_prod)
+            binding.txtPrecio.editText?.setText(productoR.prec_prod.toString())
+            binding.txtStock.editText?.setText(productoR.stock_prod.toString())
             /*
             binding.lblNomProd.text = producto.nom_prod
             binding.lblPrecioProd.text = producto.prec_prod.toString()
@@ -88,29 +97,75 @@ class DetProductoFragment : Fragment() {
             )
 
             viewModel.agregarProducto(producto)
-            println(producto)
             viewModel.agregarProductoResultado.observe(viewLifecycleOwner) { resultado ->
                 when (resultado) {
                     is Resultado.Exito -> {
-                        MaterialAlertDialogBuilder(requireContext())
-                            .setTitle(resources.getString(R.string.confirmacion))
-                            .setMessage("Resultado exitoso: ${resultado}")
-                            .setPositiveButton(resources.getString(R.string.aceptar)) { _, _ ->
-                                findNavController().popBackStack()
-                            }
-                            .setNegativeButton(resources.getString(R.string.cancelar), null)
-                            .show()
+                        mensaje_exito(" Ingreso $resultado")
                     }
                     is Resultado.Problema -> {
-                        MaterialAlertDialogBuilder(requireContext())
-                            .setTitle("Error")
-                            .setMessage(resultado.error.mensaje)
-                            .setPositiveButton("Aceptar", null)
-                            .show()
+                        mensaje_error(resultado.error.mensaje)
                     }
                 }
             }
         }
+        binding.btnActualizar.setOnClickListener {
+            val nombre = binding.txtNombre.editText?.text.toString()
+            val precio = binding.txtPrecio.editText?.text.toString().toDouble()
+            val stock = binding.txtStock.editText?.text.toString().toInt()
+
+            if (nombre.isEmpty()) {
+                binding.txtNombre.error = resources.getString(R.string.campo_requerido)
+                return@setOnClickListener
+            }
+
+            if (precio == null) {
+                binding.txtPrecio.error = resources.getString(R.string.campo_requerido)
+                return@setOnClickListener
+            }
+
+            if (stock == null) {
+                binding.txtStock.error = resources.getString(R.string.campo_requerido)
+                return@setOnClickListener
+            }
+            val producto = Producto(
+                id_prod = productoR.id_prod,
+                nom_prod = nombre,
+                id_cat = idCategoria,
+                imagen_prod = productoR.imagen_prod,
+                prec_prod = precio,
+                stock_prod = stock,
+                activo_prod = 1
+            )
+            viewModel.agregarProducto(producto)
+            viewModel.agregarProductoResultado.observe(viewLifecycleOwner) { resultado ->
+                when (resultado) {
+                    is Resultado.Exito -> {
+                        mensaje_exito(" Actualizo $resultado")
+                    }
+                    is Resultado.Problema -> {
+                        mensaje_error(resultado.error.mensaje)
+                    }
+                }
+            }
+
+        }
+    }
+    fun mensaje_exito(mensaje: String){
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.confirmacion))
+            .setMessage("Resultado exitoso: ${mensaje}")
+            .setPositiveButton(resources.getString(R.string.aceptar)) { _, _ ->
+                findNavController().popBackStack()
+            }
+            .setNegativeButton(resources.getString(R.string.cancelar), null)
+            .show()
+    }
+    fun mensaje_error(mensaje: String){
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Error")
+            .setMessage(mensaje)
+            .setPositiveButton("Aceptar", null)
+            .show()
     }
     override fun onDestroy() {
         _binding = null
