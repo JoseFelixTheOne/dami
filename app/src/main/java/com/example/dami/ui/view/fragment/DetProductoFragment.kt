@@ -40,15 +40,16 @@ class DetProductoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val args: DetProductoFragmentArgs by navArgs()
         var _productoR: Producto? = args.producto
-        val productoR: Producto = _productoR!!
         val idCategoria: Int = args.idCategoria
-        println(productoR)
-        if (productoR == null){
+        var productoR: Producto = Producto(0, "", idCategoria, "", 0.0, 0, 1)
+
+        if (_productoR == null){
             binding.btnAgregar.visibility = View.VISIBLE
             binding.btnActualizar.visibility = View.GONE
             binding.btnEliminar.visibility = View.GONE
 
         }else{
+            productoR = _productoR!!
             binding.btnAgregar.visibility = View.GONE
             binding.btnActualizar.visibility = View.VISIBLE
             binding.btnEliminar.visibility = View.VISIBLE
@@ -97,9 +98,10 @@ class DetProductoFragment : Fragment() {
             )
 
             viewModel.agregarProducto(producto)
-            viewModel.agregarProductoResultado.observe(viewLifecycleOwner) { resultado ->
+            viewModel.cambiarProductoResultado.observe(viewLifecycleOwner) { resultado ->
                 when (resultado) {
                     is Resultado.Exito -> {
+                        findNavController().popBackStack()
                         mensaje_exito(" Ingreso $resultado")
                     }
                     is Resultado.Problema -> {
@@ -137,9 +139,10 @@ class DetProductoFragment : Fragment() {
                 activo_prod = 1
             )
             viewModel.agregarProducto(producto)
-            viewModel.agregarProductoResultado.observe(viewLifecycleOwner) { resultado ->
+            viewModel.cambiarProductoResultado.observe(viewLifecycleOwner) { resultado ->
                 when (resultado) {
                     is Resultado.Exito -> {
+                        findNavController().popBackStack()
                         mensaje_exito(" Actualizo $resultado")
                     }
                     is Resultado.Problema -> {
@@ -147,17 +150,38 @@ class DetProductoFragment : Fragment() {
                     }
                 }
             }
-
+        }
+        binding.btnEliminar.setOnClickListener {
+            viewModel.eliminarProducto(productoR.id_prod)
+            var dialogShown = false
+            viewModel.cambiarProductoResultado.observe(viewLifecycleOwner) { resultado ->
+                if (!dialogShown) {
+                    dialogShown = true
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setTitle(resources.getString(R.string.confirmacion))
+                        .setMessage("¿Está seguro de eliminar el producto: ${productoR.nom_prod} ?")
+                        .setPositiveButton(resources.getString(R.string.aceptar)) { _, _ ->
+                            when (resultado) {
+                                is Resultado.Exito -> {
+                                    findNavController().popBackStack()
+                                }
+                                is Resultado.Problema -> {
+                                    mensaje_error(resultado.error.mensaje)
+                                }
+                            }
+                        }
+                        .setNegativeButton(resources.getString(R.string.cancelar), null)
+                        .show()
+                }
+            }
         }
     }
     fun mensaje_exito(mensaje: String){
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(resources.getString(R.string.confirmacion))
             .setMessage("Resultado exitoso: ${mensaje}")
-            .setPositiveButton(resources.getString(R.string.aceptar)) { _, _ ->
-                findNavController().popBackStack()
-            }
-            .setNegativeButton(resources.getString(R.string.cancelar), null)
+            .setPositiveButton(resources.getString(R.string.aceptar), null)
+            //.setNegativeButton(resources.getString(R.string.cancelar), null)
             .show()
     }
     fun mensaje_error(mensaje: String){
