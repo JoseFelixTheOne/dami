@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "319021747843",
+    "project_id": "signuploguinfirebase",
+    "storage_bucket": "signuploguinfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319021747843:android:507324ead41c3f417cd5b6",
+        "android_client_info": {
+          "package_name": "com.example.dami"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319021747843-8apt762enr6fnpvo9dlf8ef24h66ib0h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCalwRkWnSHRm29Rl-7pzOb0AB9RlF3A8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319021747843-8apt762enr6fnpvo9dlf8ef24h66ib0h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
