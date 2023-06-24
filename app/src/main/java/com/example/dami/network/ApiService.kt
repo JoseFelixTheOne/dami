@@ -15,6 +15,13 @@ interface ApiService {
     @GET("api/Categoria")
     suspend fun obtenerCategoria(): List<Categoria>
 
+    @POST("api/Categoria")
+    suspend fun agregarCategoria(@Body categoria: Categoria): Int
+
+    @DELETE("api/Categoria/{id}")
+    suspend fun eliminarCategoria(@Path("id") id: Int): Int
+
+    //Producto
     @GET("api/Producto/{id}")
     suspend fun obtenerProductosPorCategoria(@Path("id") id: Int): List<Producto>
 

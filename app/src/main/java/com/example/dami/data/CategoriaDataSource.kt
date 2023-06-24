@@ -17,4 +17,34 @@ class CategoriaDataSource {
             Resultado.Problema(Error("002","Error $ex"))
         }
     }
+    suspend fun agregarCategoria(categoria: Categoria): Resultado<Int> {
+        return try {
+            val response = ConexionApi.retrofitService.agregarCategoria(categoria)
+            if (response > 0) {
+                Resultado.Exito(response)
+            } else {
+                Resultado.Problema(Error("003", "Error en la solicitud"))
+            }
+        } catch (ex: Exception) {
+            Resultado.Problema(Error("001", "Error $ex"))
+        } catch (ex: SocketTimeoutException) {
+            Resultado.Problema(Error("002", "Error $ex"))
+        }
+    }
+
+    suspend fun eliminarCategoria(id: Int): Resultado<Int> {
+        return try {
+            val response = ConexionApi.retrofitService.eliminarCategoria(id)
+            if (response > 0) {
+                Resultado.Exito(response)
+            } else {
+                Resultado.Problema(Error("003", "Error en la solicitud"))
+            }
+        } catch (ex: Exception) {
+            Resultado.Problema(Error("001", "Error $ex"))
+        } catch (ex: SocketTimeoutException) {
+            Resultado.Problema(Error("002", "Error $ex"))
+        }
+    }
+
 }

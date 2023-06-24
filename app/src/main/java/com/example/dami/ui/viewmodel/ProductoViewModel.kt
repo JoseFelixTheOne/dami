@@ -8,8 +8,6 @@ import com.example.dami.entity.Producto
 import com.example.dami.entity.Resultado
 import com.example.dami.entity.Error
 import com.example.dami.repository.ProductoPorCateRepository
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import kotlinx.coroutines.launch
 
 class ProductoViewModel(private val repository: ProductoPorCateRepository): ViewModel() {

@@ -17,4 +17,19 @@ class CategoriaRepository(private val dataSource: CategoriaDataSource) {
             }
         }
     }
+    suspend fun agregarCategoria(categoria: Categoria): Resultado<Int> {
+        val response = dataSource.agregarCategoria(categoria)
+        return when (response) {
+            is Resultado.Exito -> Resultado.Exito(1)
+            is Resultado.Problema -> response
+        }
+    }
+
+    suspend fun eliminarCategoria(id: Int): Resultado<Int> {
+        val response = dataSource.eliminarCategoria(id)
+        return when (response) {
+            is Resultado.Exito -> Resultado.Exito(1)
+            is Resultado.Problema -> response
+        }
+    }
 }
