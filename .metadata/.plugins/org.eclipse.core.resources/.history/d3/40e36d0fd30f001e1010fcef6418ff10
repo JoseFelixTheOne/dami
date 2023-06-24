@@ -1,0 +1,29 @@
+package com.example.demo.models;
+
+import java.util.Date;
+
+import org.springframework.stereotype.Controller;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "tb_mascotas")
+public class Mascota {
+
+	@Id
+	private String cod_mascota;
+	private String nom_mascota;
+	private String  cod_tipo;
+	private int peso_mascota;
+	private Date fch_nacimiento;
+	
+	@ManyToOne
+	@JoinColumn(name = "cod_tipo",insertable = false,updatable = false)
+	private Tipo oTipo;
+}

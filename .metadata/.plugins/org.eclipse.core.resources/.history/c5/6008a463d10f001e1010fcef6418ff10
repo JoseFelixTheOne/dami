@@ -1,0 +1,26 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.example.repository.IMascotaRepository;
+import com.example.repository.ITipoRepository;
+
+
+@Controller
+public class ProyectoController {
+
+	@Autowired
+	private ITipoRepository tipoRepo;
+	
+	@Autowired
+	private IMascotaRepository mascotaRepo;
+	
+	
+	@GetMapping("/")
+	public String cargar() {
+		return "registroRoldanHuayllasco";
+	}
+	
+}

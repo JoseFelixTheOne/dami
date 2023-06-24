@@ -1,0 +1,30 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.example.demo.repository.IMascotaRepository;
+import com.example.demo.repository.ITipoRepository;
+
+
+
+@Controller
+public class ProyectoController {
+
+	@Autowired
+	private ITipoRepository tipoRepo;
+	
+	@Autowired
+	private IMascotaRepository mascotaRepo;
+	
+	
+	@GetMapping("/")
+	public String cargar(Model model) {
+		//model.addAttribute("lstTipo", tipoRepo.findAll());
+
+		return "registroRoldanHuayllasco";
+	}
+	
+}

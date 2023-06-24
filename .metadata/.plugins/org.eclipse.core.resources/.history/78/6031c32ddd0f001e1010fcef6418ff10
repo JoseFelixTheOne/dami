@@ -1,0 +1,114 @@
+package com.example.demo.controller;
+
+import java.io.OutputStream;
+import java.util.HashMap;
+
+import javax.sql.DataSource;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.models.Mascota;
+import com.example.demo.repository.IMascotaRepository;
+import com.example.demo.repository.ITipoRepository;
+
+import jakarta.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+
+
+
+@Controller
+public class ProyectoController {
+
+	@Autowired
+	private ITipoRepository tipoRepo;
+	
+	@Autowired
+	private IMascotaRepository mascotaRepo;
+	
+	
+	@GetMapping("/")
+	public String cargar(Model model) {
+		model.addAttribute("lstTipo", tipoRepo.findAll());
+		model.addAttribute("mascota", new Mascota());
+
+		return "registroRoldanHuayllasco";
+	}
+	
+	@Autowired
+	private DataSource dataSource; // javax.sql
+	@Autowired
+	private ResourceLoader resourceLoader; // core.io
+	
+	@PostMapping("/guardar")
+	public void guardar(@ModelAttribute Mascota mascota, Model model,HttpServletResponse response) {
+		String mensaje="";
+		System.out.println(mascota.getFch_nacimiento()+"-------------------------------------");
+		try {
+			mascotaRepo.save(mascota);
+			mensaje = "Registro exitoso";
+		}catch(Exception e) {
+			mensaje = "Error al guardar";
+		}
+		model.addAttribute("mensaje", mensaje);
+		model.addAttribute("mascota", new Mascota());
+		response.setHeader("Content-Disposition", "attachment; filename=\"reporte.pdf\";");
+		response.setContentType("application/pdf");
+		try {
+		String ru = resourceLoader.getResource("classpath:reportes/constanciaRoldanHuayllascoElifio.jasper").getURI().getPath();
+		HashMap parametros = new HashMap<>();
+		parametros.put("cod_mascota", "1sdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd1");
+		parametros.put("nom_mascota", "1sdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd1");
+		//parametros.put("cod_tipo", "11");
+		//parametros.put("peso_mascota", "11");
+		parametros.put("fch_nacimiento", "1sdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd1");
+
+		// la categoria se obtendrá del combo
+		JasperPrint jasperPrint = JasperFillManager.fillReport(ru, parametros, dataSource.getConnection());
+		OutputStream outStream = response.getOutputStream();
+		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
+	}
+	
+	/*
+	@PostMapping("/reports/filtro")
+	public void generarPDFListadoFiltro(HttpServletResponse response,@RequestParam(name="txtnombrecompleto") String valor) {
+		response.setHeader("Content-Disposition", "attachment; filename=\"reporte.pdf\";");
+		response.setContentType("application/pdf");
+		try {
+		String ru = resourceLoader.getResource("classpath:reportes/reporte_persona_filtro.jasper").getURI().getPath();
+		HashMap parametros = new HashMap<>();
+		parametros.put("cod_mascota", valor);
+		parametros.put("nom_mascota", valor);
+		parametros.put("cod_tipo", valor);
+		parametros.put("peso_mascota", valor);
+		parametros.put("fch_nacimiento", valor);
+
+		// la categoria se obtendrá del combo
+		JasperPrint jasperPrint = JasperFillManager.fillReport(ru, parametros, dataSource.getConnection());
+		OutputStream outStream = response.getOutputStream();
+		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
+
+	}*/
+	
+	
+}

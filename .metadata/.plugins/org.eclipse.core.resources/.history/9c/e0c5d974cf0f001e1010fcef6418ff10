@@ -1,0 +1,15 @@
+package com.example.demo.models;
+
+import org.springframework.stereotype.Controller;
+
+import jakarta.persistence.Id;
+
+@Controller
+public class Tipo {
+
+	@Id
+	private int cod_tipo;
+	
+	private String nom_tipomascota;
+
+}

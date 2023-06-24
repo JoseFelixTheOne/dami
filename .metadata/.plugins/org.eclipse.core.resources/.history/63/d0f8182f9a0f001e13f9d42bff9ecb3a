@@ -1,0 +1,5 @@
+package com.dawi.repository;
+
+public interface IMenuPermisos {
+
+}

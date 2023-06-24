@@ -1,0 +1,78 @@
+package com.example.demo.controller;
+
+import java.io.OutputStream;
+import java.util.HashMap;
+
+import javax.sql.DataSource;
+
+import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.models.Mascota;
+import com.example.demo.repository.IMascotaRepository;
+import com.example.demo.repository.ITipoRepository;
+
+import jakarta.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+
+
+
+@Controller
+public class ProyectoController {
+
+	@Autowired
+	private ITipoRepository tipoRepo;
+	
+	@Autowired
+	private IMascotaRepository mascotaRepo;
+	
+	
+	@GetMapping("/")
+	public String cargar(Model model) {
+		model.addAttribute("lstTipo", tipoRepo.findAll());
+		model.addAttribute("mascota", new Mascota());
+
+		return "registroRoldanHuayllasco";
+	}
+	
+	@Autowired
+	private DataSource dataSource; // javax.sql
+	@Autowired
+	private ResourceLoader resourceLoader; // core.io
+	
+	
+	@PostMapping("/reports/filtro")
+	public void generarPDFListadoFiltro(HttpServletResponse response,@RequestParam(name="txtnombrecompleto") String valor) {
+		response.setHeader("Content-Disposition", "attachment; filename=\"reporte.pdf\";");
+		response.setContentType("application/pdf");
+		try {
+		String ru = resourceLoader.getResource("classpath:reportes/reporte_persona_filtro.jasper").getURI().getPath();
+		HashMap parametros = new HashMap<>();
+		parametros.put("p_nombrecompleto", valor);
+		// la categoria se obtendrá del combo
+		JasperPrint jasperPrint = JasperFillManager.fillReport(ru, parametros, dataSource.getConnection());
+		OutputStream outStream = response.getOutputStream();
+		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
+
+	}
+	
+	
+}

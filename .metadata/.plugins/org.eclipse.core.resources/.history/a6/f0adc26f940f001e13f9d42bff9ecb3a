@@ -1,0 +1,23 @@
+package com.dawi.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.dawi.models.Persona;
+
+@Controller
+public class LoginController {
+
+	@GetMapping("/login")
+	public String login(Model model) {
+		return "login";
+	}
+	
+	@PostMapping("/login")
+	public String loginUser(@RequestParam(name = "")String usuario ,@RequestParam(name = "")String contra ) {
+		return "/login";
+	}
+}

@@ -1,0 +1,21 @@
+package com.dawi.models;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Entity
+@Table(name = "tb_menupermisos")
+@Data
+public class MenuPermisos {
+	@Id
+	private int id_menupermisos;
+	
+	private int id_tipousu;
+
+	private int id_menu;
+	
+	private int activo_menupermisos;
+
+}

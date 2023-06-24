@@ -1,0 +1,17 @@
+package com.example.demo.models;
+
+import org.springframework.stereotype.Controller;
+
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Controller
+@Data
+@Table(name = "tb_mascotas")
+public class Mascota {
+
+	@Id
+	private String cod_mascota;
+	private String nom_mascota;
+}
