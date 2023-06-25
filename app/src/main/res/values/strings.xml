@@ -4,7 +4,7 @@
     <string name="title_secondary">Productos</string>
     <string name="title_third">Producto</string>
     <string name="category_title">Categorias</string>
-    <string name="category_title_secondary">Categorias</string>
+    <string name="category_title_secondary">Categoria</string>
     <string name="agregar">Agregar</string>
     <string name="actualizar">Actualizar</string>
     <string name="eliminar">Eliminar</string>

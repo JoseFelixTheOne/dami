@@ -128,7 +128,7 @@ class DetCatFragment : Fragment() {
                     dialogShown = true
                     MaterialAlertDialogBuilder(requireContext())
                         .setTitle(resources.getString(R.string.confirmacion))
-                        .setMessage("¿Está seguro de eliminar el producto: ${categoriaR.nom_cat} ?")
+                        .setMessage("¿Está seguro de eliminar la categoria: ${categoriaR.nom_cat} ?")
                         .setPositiveButton(resources.getString(R.string.aceptar)) { _, _ ->
                             when (resultado) {
                                 is Resultado.Exito -> {

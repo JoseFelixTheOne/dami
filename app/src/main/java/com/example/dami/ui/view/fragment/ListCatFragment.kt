@@ -50,7 +50,6 @@ class ListCatFragment : Fragment() {
                     layoutParams.setMargins(margin, margin, margin, margin)
                     binding.rvCategoria.layoutParams = layoutParams
                     binding.rvCategoria.adapter = CateAdapter(lista){categoria ->
-                        println("CLICK ${categoria.id_cat} nombre: ${categoria.nom_cat}")
                         val accion= ListCatFragmentDirections.actionListCatFragmentToDetCatFragment(categoria)
                         findNavController().navigate(accion)
                     }
@@ -67,7 +66,7 @@ class ListCatFragment : Fragment() {
         binding.btnNuevo.setOnClickListener {
             val accion= ListCatFragmentDirections.actionListCatFragmentToDetCatFragment(null)
             findNavController().navigate(accion)
-        }        
+        }
 
     }
 
