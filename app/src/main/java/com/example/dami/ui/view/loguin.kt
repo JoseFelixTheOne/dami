@@ -18,10 +18,7 @@ class loguin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoguinBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        FirebaseApp.initializeApp(this)
-
-        val email = binding.email.text.toString()
-        val pass = binding.password.text.toString()
+        //FirebaseApp.initializeApp(this) <-- Comenta esta línea
 
         auth = FirebaseAuth.getInstance()
         binding.ingresar.setOnClickListener {
@@ -50,7 +47,8 @@ class loguin : AppCompatActivity() {
         }
 
         binding.rediriccionarregistro.setOnClickListener {
-            //startActivity(Intent(this, register::class.java))
+           // startActivity(Intent(this, register::class.java)) // Descomenta esta línea
         }
     }
+
 }
