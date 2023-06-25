@@ -51,15 +51,8 @@ class ListCatFragment : Fragment() {
                     binding.rvCategoria.layoutParams = layoutParams
                     binding.rvCategoria.adapter = CateAdapter(lista){categoria ->
                         println("CLICK ${categoria.id_cat} nombre: ${categoria.nom_cat}")
-                        MaterialAlertDialogBuilder(requireContext())
-                            .setTitle(resources.getString(R.string.confirmacion))
-                            .setMessage(resources.getString(R.string.mensaje_siguiente,categoria.nom_cat))
-                            .setPositiveButton(resources.getString(R.string.aceptar)){_,_ ->
-                                val accion= ListCatFragmentDirections.actionListCatFragmentToDetCatFragment(null)
-                                findNavController().navigate(accion)
-                            }
-                            .setNegativeButton(resources.getString(R.string.cancelar),null)
-                            .show()
+                        val accion= ListCatFragmentDirections.actionListCatFragmentToDetCatFragment(categoria)
+                        findNavController().navigate(accion)
                     }
                 }
                 is Resultado.Problema ->{
@@ -71,6 +64,10 @@ class ListCatFragment : Fragment() {
                 }
             }
         }
+        binding.btnNuevo.setOnClickListener {
+            val accion= ListCatFragmentDirections.actionListCatFragmentToDetCatFragment(null)
+            findNavController().navigate(accion)
+        }        
 
     }
 

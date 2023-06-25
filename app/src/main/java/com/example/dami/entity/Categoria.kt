@@ -4,6 +4,7 @@ import java.io.Serializable
 
 class Categoria(val id_cat: Int,
                 val nom_cat: String,
+                val desc_cat: String,
                 val activo_Cat: Int?,
                 val imagen_cat: String) : Serializable{
     override fun toString(): String {
