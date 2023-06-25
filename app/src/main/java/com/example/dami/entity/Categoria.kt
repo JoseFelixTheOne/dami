@@ -1,9 +1,11 @@
 package com.example.dami.entity
 
+import java.io.Serializable
+
 class Categoria(val id_cat: Int,
                 val nom_cat: String,
                 val activo_Cat: Int?,
-                val imagen_cat: String) {
+                val imagen_cat: String) : Serializable{
     override fun toString(): String {
         return "Categoria(id_cat=$id_cat, nom_cat='$nom_cat', activo_Cat=$activo_Cat, imagen_cat='$imagen_cat')"
     }

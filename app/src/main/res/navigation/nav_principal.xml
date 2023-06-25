@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_menuFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_listCatFragment2"
+            app:destination="@id/listCatFragment" />
     </fragment>
 
     <fragment
@@ -48,5 +51,19 @@
         <argument
             android:name="idCategoria"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/detCatFragment"
+        android:name="com.example.dami.ui.view.fragment.DetCatFragment"
+        android:label="fragment_det_cat"
+        tools:layout="@layout/fragment_det_cat" />
+    <fragment
+        android:id="@+id/listCatFragment"
+        android:name="com.example.dami.ui.view.fragment.ListCatFragment"
+        android:label="fragment_list_cat"
+        tools:layout="@layout/fragment_list_cat" >
+        <action
+            android:id="@+id/action_listCatFragment_to_detCatFragment"
+            app:destination="@id/detCatFragment" />
     </fragment>
 </navigation>
