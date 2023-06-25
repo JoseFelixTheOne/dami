@@ -40,19 +40,34 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
-        binding.btnCategoria.setOnClickListener {
+        binding.btnProductos.setOnClickListener {
 
             val accion= MenuFragmentDirections.actionMenuFragmentToMainFragment()
             findNavController().navigate(accion)
         }
 
-        binding.imgData.setOnClickListener {
+        binding.imgProducto.setOnClickListener {
             val accion= MenuFragmentDirections.actionMenuFragmentToMainFragment()
+            findNavController().navigate(accion)
+        }
+
+        binding.layoutProducto.setOnClickListener {
+            val accion= MenuFragmentDirections.actionMenuFragmentToMainFragment()
+            findNavController().navigate(accion)
+        }
+        binding.btnCategoria.setOnClickListener {
+
+            val accion= MenuFragmentDirections.actionMenuFragmentToListCatFragment2()
+            findNavController().navigate(accion)
+        }
+
+        binding.imgCate.setOnClickListener {
+            val accion= MenuFragmentDirections.actionMenuFragmentToListCatFragment2()
             findNavController().navigate(accion)
         }
 
         binding.layoutCategoria.setOnClickListener {
-            val accion= MenuFragmentDirections.actionMenuFragmentToMainFragment()
+            val accion= MenuFragmentDirections.actionMenuFragmentToListCatFragment2()
             findNavController().navigate(accion)
         }
 

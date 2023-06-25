@@ -55,12 +55,17 @@
     <fragment
         android:id="@+id/detCatFragment"
         android:name="com.example.dami.ui.view.fragment.DetCatFragment"
-        android:label="fragment_det_cat"
-        tools:layout="@layout/fragment_det_cat" />
+        android:label="@string/category_title_secondary"
+        tools:layout="@layout/fragment_det_cat" >
+        <argument
+            android:name="categoria"
+            app:argType="com.example.dami.entity.Categoria"
+            app:nullable="true" />
+    </fragment>
     <fragment
         android:id="@+id/listCatFragment"
         android:name="com.example.dami.ui.view.fragment.ListCatFragment"
-        android:label="fragment_list_cat"
+        android:label="@string/category_title"
         tools:layout="@layout/fragment_list_cat" >
         <action
             android:id="@+id/action_listCatFragment_to_detCatFragment"

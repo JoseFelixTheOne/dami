@@ -1,71 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.view.fragment.MainFragment">
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
+    tools:context=".ui.view.fragment.MenuFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardProd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Media -->
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="194dp"
-                app:srcCompat="@drawable/categorias"
-                android:scaleType="centerCrop"
-                android:id="@+id/imgData"
-                android:contentDescription="Categoria"
-                />
+            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/layoutCategoria"
-                android:padding="16dp">
+                android:orientation="vertical">
 
-                <!-- Title, secondary and supporting text -->
-                <TextView
+                <!-- Media -->
+                <ImageView
+                    android:id="@+id/imgProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="194dp"
+                    android:contentDescription="Producto"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/categorias" />
+
+                <LinearLayout
+                    android:id="@+id/layoutProducto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Categorias"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                    android:textAlignment="center"
-                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+                    <!-- Title, secondary and supporting text -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_secondary"
 
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+
+                </LinearLayout>
+
+                <!-- Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnProductos"
+                        style="@style/Widget.Material3.Button.ElevatedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ir"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <!-- Buttons -->
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardProd">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btnCategoria"
-                    style="@style/Widget.Material3.Button.ElevatedButton"
+                <!-- Media -->
+                <ImageView
+                    android:id="@+id/imgCate"
+                    android:layout_width="match_parent"
+                    android:layout_height="194dp"
+                    android:contentDescription="Categoria"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/categorias" />
+
+                <LinearLayout
+                    android:id="@+id/layoutCategoria"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="Ir" />
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Title, secondary and supporting text -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/category_title"
+
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+
+                </LinearLayout>
+
+                <!-- Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnCategoria"
+                        style="@style/Widget.Material3.Button.ElevatedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ir"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</androidx.core.widget.NestedScrollView>

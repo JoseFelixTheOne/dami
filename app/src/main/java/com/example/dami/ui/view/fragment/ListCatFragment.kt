@@ -9,7 +9,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dami.R
-import com.example.dami.databinding.FragmentCrudcateBinding
 import com.example.dami.databinding.FragmentListCatBinding
 import com.example.dami.entity.Resultado
 import com.example.dami.ui.view.adapter.CateAdapter
@@ -56,7 +55,7 @@ class ListCatFragment : Fragment() {
                             .setTitle(resources.getString(R.string.confirmacion))
                             .setMessage(resources.getString(R.string.mensaje_siguiente,categoria.nom_cat))
                             .setPositiveButton(resources.getString(R.string.aceptar)){_,_ ->
-                                val accion= MainFragmentDirections.actionMainFragmentToProductosXCateFragment(categoria.id_cat)
+                                val accion= ListCatFragmentDirections.actionListCatFragmentToDetCatFragment(null)
                                 findNavController().navigate(accion)
                             }
                             .setNegativeButton(resources.getString(R.string.cancelar),null)
