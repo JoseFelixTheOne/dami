@@ -17,6 +17,9 @@
             android:id="@+id/action_menuFragment_to_listCatFragment2"
             app:destination="@id/listCatFragment" />
         <action
+            android:id="@+id/action_menuFragment_to_registroUsuario"
+            app:destination="@id/registroUsuario" />
+        <action
             android:id="@+id/action_menuFragment_to_listPersoFragment"
             app:destination="@id/listPersoFragment" />
     </fragment>
@@ -74,6 +77,11 @@
             android:id="@+id/action_listCatFragment_to_detCatFragment"
             app:destination="@id/detCatFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/registroUsuario"
+        android:name="com.example.dami.ui.view.fragment.RegistroUsuario"
+        android:label="@string/registar"
+        tools:layout="@layout/fragment_registro_usuario" />
     <fragment
         android:id="@+id/listPersoFragment"
         android:name="com.example.dami.ui.view.fragment.ListPersoFragment"
