@@ -77,6 +77,6 @@
     <fragment
         android:id="@+id/registroUsuario"
         android:name="com.example.dami.ui.view.fragment.RegistroUsuario"
-        android:label="fragment_registro_usuario"
+        android:label="@string/registar"
         tools:layout="@layout/fragment_registro_usuario" />
 </navigation>
