@@ -1,6 +1,7 @@
 package com.example.dami.network
 
 import com.example.dami.entity.Categoria
+import com.example.dami.entity.Persona
 import com.example.dami.entity.Producto
 import retrofit2.Response
 import retrofit2.http.Body
@@ -30,4 +31,14 @@ interface ApiService {
 
     @DELETE("api/Producto/{id}")
     suspend fun eliminarProducto(@Path("id") id: Int): Int
+
+    /**Persona***********************************************************/
+    @GET("api/Persona")
+    suspend fun obtenerPersona(): List<Persona>
+
+    @POST("api/Persona")
+    suspend fun agregarPersona(@Body persona: Persona): Int
+
+    @DELETE("api/Persona/{id}")
+    suspend fun eliminarPersona(@Path("id") id: Int): Int
 }

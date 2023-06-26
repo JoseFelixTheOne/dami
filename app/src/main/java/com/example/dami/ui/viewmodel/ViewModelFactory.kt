@@ -3,8 +3,10 @@ package com.example.dami.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.dami.data.CategoriaDataSource
+import com.example.dami.data.PersonaDataSource
 import com.example.dami.data.ProductoPorCateDataSource
 import com.example.dami.repository.CategoriaRepository
+import com.example.dami.repository.PersonaRepository
 import com.example.dami.repository.ProductoPorCateRepository
 
 class ViewModelFactory : ViewModelProvider.Factory {
@@ -14,6 +16,9 @@ class ViewModelFactory : ViewModelProvider.Factory {
             return CategoriaViewModel(CategoriaRepository(CategoriaDataSource())) as T
         } else if (modelClass.isAssignableFrom(ProductoViewModel::class.java)) {
             return ProductoViewModel(ProductoPorCateRepository(ProductoPorCateDataSource())) as T
+        }
+        else if (modelClass.isAssignableFrom(PersonaViewModel::class.java)) {
+            return PersonaViewModel(PersonaRepository(PersonaDataSource())) as T
         }
         return super.create(modelClass)
     }

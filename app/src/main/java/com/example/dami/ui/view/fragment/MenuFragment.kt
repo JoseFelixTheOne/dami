@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dami.R
 import com.example.dami.databinding.FragmentMainBinding
@@ -61,13 +62,30 @@ class MenuFragment : Fragment() {
             findNavController().navigate(accion)
         }
 
-        binding.imgCate.setOnClickListener {
+        binding.imgCates.setOnClickListener {
             val accion= MenuFragmentDirections.actionMenuFragmentToListCatFragment2()
             findNavController().navigate(accion)
         }
 
-        binding.layoutCategoria.setOnClickListener {
+        binding.layoutCategorias.setOnClickListener {
             val accion= MenuFragmentDirections.actionMenuFragmentToListCatFragment2()
+            findNavController().navigate(accion)
+        }
+
+        // PERSONA -------------------------------
+        binding.btnPersona.setOnClickListener {
+
+            val accion= MenuFragmentDirections.actionMenuFragmentToListPersoFragment()
+            findNavController().navigate(accion)
+        }
+
+        binding.imgPerso.setOnClickListener {
+            val accion= MenuFragmentDirections.actionMenuFragmentToListPersoFragment()
+            findNavController().navigate(accion)
+        }
+
+        binding.layoutPersonas.setOnClickListener {
+            val accion= MenuFragmentDirections.actionMenuFragmentToListPersoFragment()
             findNavController().navigate(accion)
         }
 
