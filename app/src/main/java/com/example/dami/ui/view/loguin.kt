@@ -18,7 +18,7 @@ class loguin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoguinBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //FirebaseApp.initializeApp(this) <-- Comenta esta línea
+        FirebaseApp.initializeApp(this)
 
         auth = FirebaseAuth.getInstance()
         binding.ingresar.setOnClickListener {
