@@ -70,6 +70,18 @@ class MenuFragment : Fragment() {
             val accion= MenuFragmentDirections.actionMenuFragmentToListCatFragment2()
             findNavController().navigate(accion)
         }
+        binding.layoutRegistro.setOnClickListener{
+            val accion = MenuFragmentDirections.actionMenuFragmentToRegistroUsuario()
+            findNavController().navigate(accion)
+        }
+        binding.imgRegistro.setOnClickListener {
+            val accion = MenuFragmentDirections.actionMenuFragmentToRegistroUsuario()
+            findNavController().navigate(accion)
+        }
+        binding.btnRegistro.setOnClickListener {
+            val accion = MenuFragmentDirections.actionMenuFragmentToRegistroUsuario()
+            findNavController().navigate(accion)
+        }
 
     }
 

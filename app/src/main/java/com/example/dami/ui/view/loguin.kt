@@ -45,10 +45,6 @@ class loguin : AppCompatActivity() {
                 binding.email.setError("Please enter correct email")
             }
         }
-
-        binding.rediriccionarregistro.setOnClickListener {
-           // startActivity(Intent(this, register::class.java)) // Descomenta esta línea
-        }
     }
 
 }

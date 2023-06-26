@@ -79,15 +79,13 @@
             android:id="@+id/cardCate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardProd">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -95,6 +93,7 @@
                 android:orientation="vertical">
 
                 <!-- Media -->
+
                 <ImageView
                     android:id="@+id/imgCate"
                     android:layout_width="match_parent"
@@ -131,6 +130,73 @@
 
                     <Button
                         android:id="@+id/btnCategoria"
+                        style="@style/Widget.Material3.Button.ElevatedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ir"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardCate">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Media -->
+                <ImageView
+                    android:id="@+id/imgRegistro"
+                    android:layout_width="match_parent"
+                    android:layout_height="194dp"
+                    android:contentDescription="Registro"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/categorias" />
+
+                <LinearLayout
+                    android:id="@+id/layoutRegistro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Title, secondary and supporting text -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/registro_title"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                    <!-- Otros elementos adicionales para el registro -->
+
+                </LinearLayout>
+
+                <!-- Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnRegistro"
                         style="@style/Widget.Material3.Button.ElevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
