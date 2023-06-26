@@ -10,6 +10,7 @@
     <string name="actualizar">Actualizar</string>
     <string name="eliminar">Eliminar</string>
     <string name="nombre">Nombre</string>
+    <string name="descripcion">Descripcion</string>
     <string name="registar">Registrar</string>
     <string name="precio">Precio</string>
     <string name="stokc">Stokc</string>
