@@ -165,7 +165,7 @@
                     android:layout_height="194dp"
                     android:contentDescription="Registro"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/categorias" />
+                    app:srcCompat="@drawable/user2" />
 
                 <LinearLayout
                     android:id="@+id/layoutRegistro"
@@ -232,7 +232,7 @@
                     android:layout_height="194dp"
                     android:contentDescription="Categoria"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/categorias" />
+                    app:srcCompat="@drawable/persona" />
 
                 <LinearLayout
                     android:id="@+id/layoutPersonas"
