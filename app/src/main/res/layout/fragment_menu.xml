@@ -33,7 +33,7 @@
                     android:layout_height="194dp"
                     android:contentDescription="Producto"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/categorias" />
+                    app:srcCompat="@drawable/productpng" />
 
                 <LinearLayout
                     android:id="@+id/layoutProducto"
