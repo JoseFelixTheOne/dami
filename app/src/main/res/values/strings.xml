@@ -10,6 +10,11 @@
     <string name="actualizar">Actualizar</string>
     <string name="eliminar">Eliminar</string>
     <string name="nombre">Nombre</string>
+    <string name="apePat_per">Apellido paterno</string>
+    <string name="apeMat_per">Apellido materno</string>
+    <string name="correo_per">Correo electronico</string>
+    <string name="dir_per">Dirección</string>
+    <string name="flagCliente_per">Flag</string>
     <string name="registar">Registrar</string>
     <string name="precio">Precio</string>
     <string name="stokc">Stokc</string>
