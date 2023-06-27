@@ -85,7 +85,7 @@
     <fragment
         android:id="@+id/listPersoFragment"
         android:name="com.example.dami.ui.view.fragment.ListPersoFragment"
-        android:label="fragment_list_perso"
+        android:label="@string/people_title"
         tools:layout="@layout/fragment_list_perso" >
         <action
             android:id="@+id/action_listPersoFragment_to_detPersoFragment"
@@ -94,7 +94,7 @@
     <fragment
         android:id="@+id/detPersoFragment"
         android:name="com.example.dami.ui.view.fragment.DetPersoFragment"
-        android:label="fragment_det_perso"
+        android:label="@string/person_title"
         tools:layout="@layout/fragment_det_perso" >
         <argument
             android:name="persona"
